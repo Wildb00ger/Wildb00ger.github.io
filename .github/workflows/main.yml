@@ -14,7 +14,7 @@ jobs:
       - name: Update list.txt
         run: |
           chmod +x "${GITHUB_WORKSPACE}/update_list.sh"
-          ./${GITHUB_WORKSPACE}/update_list.sh
+          "${GITHUB_WORKSPACE}/update_list.sh"
 
       # Runs a set of commands using the runners shell
       - name: Commit and push changes
