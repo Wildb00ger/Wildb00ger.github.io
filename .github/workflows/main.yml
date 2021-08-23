@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: test-action
+
+on: [push]
+
+jobs:
+  # This workflow contains a single job called "build"
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Update list.txt
+        run: |
+          chmod +x "${GITHUB_WORKSPACE}/.github/update_list.sh"
+          ./${GITHUB_WORKSPACE}/.github/update_list.sh
+
+      # Runs a set of commands using the runners shell
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "rukarangi"
+          git config --global user.email "luke@yorkbay.net.nz"
+
+          git add -A
+          git commit -m "updated list.txt"
+          git push
