@@ -14,15 +14,15 @@ async function get_media_names() {
     let result = [];
     let names = [];
 
-    await fetch("media/list.txt")
+    await fetch("list.txt")
         .then(response => response.text())
         .then(data => {
-            console.log(data.split(","));
-            names = data.split(",");
+            console.log(data.split(" "));
+            names = data.split(" ");
         });
 
     names.forEach(item => {
-        let test_image = '<img src="media/'+ item +'" class="media">';
+        let test_image = '<img src="'+ item +'" class="media">';
         result.push(test_image);
     });
 
