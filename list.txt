@@ -1,1 +1,1 @@
-./media/dwawings.png ./media/peguins.png ./media/spiderman.png ./media/thelegojoker.png
+./media/2021-01-01-dwawings.png ./media/2021-01-02-peguins.png ./media/2021-02-01-spiderman.png ./media/2021-02-02-thelegojoker.png
