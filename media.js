@@ -15,7 +15,7 @@ async function get_media_names() {
     let result = [];
     let names = [];
 
-    let re = /\/\w*\.png/;
+    let re = /\/[\w-]*\.png/;
 
     await fetch("list.txt")
         .then(response => response.text())

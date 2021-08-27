@@ -1,2 +1,2 @@
 #!/bin/bash
-echo `ls ./media/*` > list.txt
+echo `ls ./media/* | sort -r` > list.txt
