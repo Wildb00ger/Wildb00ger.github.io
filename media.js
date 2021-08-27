@@ -22,6 +22,8 @@ async function get_media_names() {
         });
 
     names.forEach(item => {
+        let file_type = item.split(-3);
+        console.log(file_type);
         let test_image = '<img src="'+ item +'" class="media">';
         result.push(test_image);
     });
@@ -36,7 +38,7 @@ get_media_names().then(result => {
     // more complicated handling goes here
     result.forEach(img => {
         insert = insert.concat(img);
-    })
+    });
 
     console.log(insert);
     
