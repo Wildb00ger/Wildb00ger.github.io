@@ -1,9 +1,9 @@
 html {
     height: 100%;
     background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(187,191,120,1) 100%);
+    /*background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(187,191,120,1) 100%);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover;*/
 }
 
 #header {
@@ -17,4 +17,16 @@ html {
     margin-right: auto;
     width: 50%;
     padding: 15px;
+}
+
+.card_title {
+    text-align: center;
+}
+
+.card {
+    border-bottom:solid rgba(187,191,120,1) 2px;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
 }

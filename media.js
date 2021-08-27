@@ -9,10 +9,13 @@ Basic layout:
 */
 
 let listicle = document.getElementById('listOfAllLists');
+let back_gradient_style = document.getElementsByTagName("html")[0].style;
 
 async function get_media_names() {
     let result = [];
     let names = [];
+
+    let re = /\/\w*\.png/;
 
     await fetch("list.txt")
         .then(response => response.text())
@@ -21,11 +24,20 @@ async function get_media_names() {
             names = data.split(" ");
         });
 
-    names.forEach(item => {
-        let file_type = item.split(-3);
-        console.log(file_type);
+    names.forEach((item, idx) => {
+        // grab parts of path
+        let cleaned = (idx != names.length - 1) ? item : item.slice(0,-1);
+        let name = cleaned.match(re)[0].slice(1,-4);
+        let file_type = cleaned.slice(-3);
+
+        console.log(name, file_type, idx);
+
+        // construct card
+        let title = '<h2 class="card_title">'+ name +'</h2>';
         let test_image = '<img src="'+ item +'" class="media">';
-        result.push(test_image);
+        let card = '<div class="card">' + title + test_image + '</div>';
+
+        result.push(card);
     });
 
     console.log(result);
@@ -43,4 +55,14 @@ get_media_names().then(result => {
     console.log(insert);
     
     listicle.innerHTML = insert;
+
+    back_gradient_style.background = "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(193,196,125,1) 100%)";
+    back_gradient_style.backgroundRepeat = "no-repeat";
+    back_gradient_style.backgroundSize = "cover";
 });
+
+/*
+background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(187,191,120,1) 100%);
+background-repeat: no-repeat;
+background-size: cover;
+*/
