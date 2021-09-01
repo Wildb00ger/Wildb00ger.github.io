@@ -11,6 +11,26 @@ Basic layout:
 let listicle = document.getElementById('listOfAllLists');
 let back_gradient_style = document.getElementsByTagName("html")[0].style;
 
+async function create_card(item, name, file_type) {
+    let title = '<h2 class="card_title">'+ name +'</h2>';
+    let content;
+    let card;
+
+    switch (file_type) {
+        case 'png':
+            content = '<img src="'+ item +'" class="media">';
+            break;
+        case 'txt':
+            let text;
+            await fetch(item).then(response => text = response.text());
+            content = '<p class="media">' + text + '</p>';
+            break;
+    }
+
+    card = '<div class="card">' + title + content + '</div>';
+    return card;
+}
+
 async function get_media_names() {
     let result = [];
     let names = [];
@@ -30,14 +50,21 @@ async function get_media_names() {
         let name = cleaned.match(re)[0].slice(1,-4);
         let file_type = cleaned.slice(-3);
 
-        console.log(name, file_type, idx);
+        console.log(item, name, file_type, idx);
 
         // construct card
-        let title = '<h2 class="card_title">'+ name +'</h2>';
-        let test_image = '<img src="'+ item +'" class="media">';
-        let card = '<div class="card">' + title + test_image + '</div>';
+        //let title = '<h2 class="card_title">'+ name +'</h2>';
+        //let test_image = '<img src="'+ item +'" class="media">';
+        //let card = '<div class="card">' + title + test_image + '</div>';
 
-        result.push(card);
+        create_card(item, name, file_type)
+            .then(test_card => {
+                //console.log(idx);
+                //console.log(test_card + '\n' + card);
+                result.push(test_card);
+            });
+
+        //result.push(card);
     });
 
     console.log(result);
