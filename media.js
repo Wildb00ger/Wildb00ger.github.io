@@ -35,6 +35,8 @@ async function create_card(item, name, file_type, description) {
                 .then(data => text = data);
             content = '<p class="media essay">' + text + '</p>';
             break;
+        case 'mp4':
+            content = '<video class="media video" width="320" height="240" controls><source src="' + item + '" type="video/mp4">No suppport</video>';
     }
 
     card = '<div class="card">' + title + content + '</div>';
@@ -45,7 +47,7 @@ async function get_media_names() {
     let result = ["", "", "", "", ""];
     let names = [];
 
-    let re = /\/[\w-]*\.(png|txt)/;
+    let re = /\/[\w-]*\.(png|txt|mp4)/;
 
     await fetch("list.txt")
         .then(response => response.text())
