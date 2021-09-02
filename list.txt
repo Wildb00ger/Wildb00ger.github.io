@@ -1,1 +1,1 @@
-./media/2021-09-02-Asukas_opinion_of_Pride_Month_.mp4 ./media/2021-03-01-test.txt ./media/2021-02-02-thelegojoker.txt ./media/2021-02-02-thelegojoker.png ./media/2021-02-01-spiderman.png ./media/2021-01-02-peguins.png ./media/2021-01-01-dwawings.png
+./media/2021-09-02-Asukas_opinion_of_Pride_Month_.txt ./media/2021-09-02-Asukas_opinion_of_Pride_Month_.mp4 ./media/2021-03-01-test.txt ./media/2021-02-02-thelegojoker.txt ./media/2021-02-02-thelegojoker.png ./media/2021-02-01-spiderman.png ./media/2021-01-02-peguins.png ./media/2021-01-01-dwawings.png

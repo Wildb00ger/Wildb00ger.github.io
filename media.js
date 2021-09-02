@@ -11,8 +11,20 @@ Basic layout:
 let listicle = document.getElementById('listOfAllLists');
 let back_gradient_style = document.getElementsByTagName("html")[0].style;
 
+function produce_title(title) {
+    console.log("Start: " + title);
+    // assuming yyyy-mm-dd-name
+    let date = title.slice(0,10).replace(/-/g, "/");
+    let name = title.slice(11).replace(/_/g, " ");
+    //console.log("Date: " + date);
+    //console.log("Name: " + name);
+
+    return date + " " + name;
+}
+
 async function create_card(item, name, file_type, description) {
-    let title = '<h2 class="card_title">'+ name +'</h2>';
+    let title = '<h2 class="card_title">'+ produce_title(name) +'</h2>';
+    //produce_title(name);
     let content;
     let card;
 
@@ -24,7 +36,7 @@ async function create_card(item, name, file_type, description) {
             if (description) {
                 await fetch("./media/" + name + ".txt")
                 .then(response => response.text())
-                .then(data => content += '<p class="media">' + data + '</p>');
+                .then(data => content += '<p class="description">' + data + '</p>');
             }
 
             break;
@@ -33,7 +45,9 @@ async function create_card(item, name, file_type, description) {
             await fetch(item)
                 .then(response => response.text())
                 .then(data => text = data);
+
             content = '<p class="media essay">' + text + '</p>';
+
             break;
         case 'mp4':
             content = '<video class="media video" controls><source src="' + item + '" type="video/mp4">No suppport</video>';
@@ -42,7 +56,7 @@ async function create_card(item, name, file_type, description) {
             if (description) {
                 await fetch("./media/" + name + ".txt")
                 .then(response => response.text())
-                .then(data => content += '<p class="media">' + data + '</p>');
+                .then(data => content += '<p class="description">' + data + '</p>');
             }
             
             break;
@@ -61,7 +75,7 @@ async function get_media_names() {
     await fetch("list.txt")
         .then(response => response.text())
         .then(data => {
-            console.log(data.split(" "));
+            //console.log(data.split(" "));
             names = data.split(" ");
         });
 
@@ -70,7 +84,7 @@ async function get_media_names() {
     for (const [idx, item] of names.entries()) {
         let cleaned = (idx != names.length - 1) ? item : item.slice(0,-1);
         
-        console.log(item, cleaned, cleaned.match(re));
+       //console.log(item, cleaned, cleaned.match(re));
         
         let name = cleaned.match(re)[0].slice(1,-4);
         let file_type = cleaned.slice(-3);
@@ -78,12 +92,14 @@ async function get_media_names() {
         let description_path = "./media/" + name + ".txt";
         let description = names.includes(description_path);
         let image_path = "./media/" + name + ".png";
+        let video_path = "./media/" + name + ".mp4"
         let is_desc_with_image = (names.includes(image_path) && file_type == "txt");
+        let is_desc_with_video = (names.includes(video_path) && file_type == "txt");
 
-        if (!(item in carded) && !(is_desc_with_image)) {
+        if (!(item in carded) && !(is_desc_with_image) && !(is_desc_with_video)) {
             await create_card(item, name, file_type, description)
                 .then(card => {
-                    console.log(card);
+                    //console.log(card);
                     listicle.innerHTML += card;
                     carded.push(item);
                 });
