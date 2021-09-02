@@ -36,7 +36,16 @@ async function create_card(item, name, file_type, description) {
             content = '<p class="media essay">' + text + '</p>';
             break;
         case 'mp4':
-            content = '<video class="media video" width="320" height="240" controls><source src="' + item + '" type="video/mp4">No suppport</video>';
+            content = '<video class="media video" controls><source src="' + item + '" type="video/mp4">No suppport</video>';
+            
+            // grab associated desciption if availble
+            if (description) {
+                await fetch("./media/" + name + ".txt")
+                .then(response => response.text())
+                .then(data => content += '<p class="media">' + data + '</p>');
+            }
+            
+            break;
     }
 
     card = '<div class="card">' + title + content + '</div>';
