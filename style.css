@@ -1,6 +1,6 @@
 html {
     height: 100%;
-    background: rgb(255,255,255);
+    background: /*rgb(255,255,255)*/rgba(187,191,120,1);
     
     /*background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(187,191,120,1) 100%);
     background-repeat: no-repeat;
@@ -36,6 +36,12 @@ body {
     padding: 15px;
 }
 
+.description {
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .banner {
     display: block;
     margin-left: auto;
@@ -43,18 +49,35 @@ body {
     height: 500px;
 }
 
+.contact {
+    height: 40px;
+}
+
 .card_title {
     text-align: center;
 }
 
 .card {
-    border-bottom:solid rgba(187,191,120,1) 2px;
+    color: rgb(0,65,1);
+    border-bottom:solid rgb(0,65,1) 2px; /*rgba(187,191,120,1) 2px;*/
     margin-left: 100px;
     margin-right: 100px;
     padding-bottom: 50px;
     margin-bottom: 50px;
 }
 
+.internal {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /*background-color: rgb(10, 177, 168);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;*/
+}
+
 .essay {
-    background-color: rgb(10, 177, 168);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
 }

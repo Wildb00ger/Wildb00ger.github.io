@@ -108,7 +108,7 @@ async function get_media_names() {
 }
 
 get_media_names().then(() => {
-    back_gradient_style.background = "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(193,196,125,1) 100%)";
-    back_gradient_style.backgroundRepeat = "no-repeat";
-    back_gradient_style.backgroundSize = "cover";
+    //back_gradient_style.background = "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(193,196,125,1) 100%)";
+    //back_gradient_style.backgroundRepeat = "no-repeat";
+    //back_gradient_style.backgroundSize = "cover";
 });
