@@ -69,6 +69,9 @@ async function get_media_names() {
 
     for (const [idx, item] of names.entries()) {
         let cleaned = (idx != names.length - 1) ? item : item.slice(0,-1);
+        
+        console.log(item, cleaned, cleaned.match(re));
+        
         let name = cleaned.match(re)[0].slice(1,-4);
         let file_type = cleaned.slice(-3);
 
