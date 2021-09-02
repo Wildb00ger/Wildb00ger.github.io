@@ -22,7 +22,7 @@ async function create_card(item, name, file_type, description) {
             
             // grab associated desciption if availble
             if (description) {
-                await fetch(description_path)
+                await fetch("./media/" + name + ".txt")
                 .then(response => response.text())
                 .then(data => content += '<p class="media">' + data + '</p>');
             }
@@ -33,7 +33,7 @@ async function create_card(item, name, file_type, description) {
             await fetch(item)
                 .then(response => response.text())
                 .then(data => text = data);
-            content = '<p class="media">' + text + '</p>';
+            content = '<p class="media essay">' + text + '</p>';
             break;
     }
 
@@ -61,12 +61,12 @@ async function get_media_names() {
         let name = cleaned.match(re)[0].slice(1,-4);
         let file_type = cleaned.slice(-3);
 
-        let description_path = '/media/' + name + '.txt';
-        console.log(description_path);
+        let description_path = "./media/" + name + ".txt";
+        let description = names.includes(description_path);
+        let image_path = "./media/" + name + ".png";
+        let is_desc_with_image = (names.includes(image_path) && file_type == "txt");
 
-        let description = (description_path in names);
-
-        if (!(item in carded)) {
+        if (!(item in carded) && !(is_desc_with_image)) {
             await create_card(item, name, file_type, description)
                 .then(card => {
                     console.log(card);
