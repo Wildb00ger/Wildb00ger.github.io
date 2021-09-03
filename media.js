@@ -75,17 +75,14 @@ async function get_media_names() {
     await fetch("list.txt")
         .then(response => response.text())
         .then(data => {
-            //console.log(data.split(" "));
-            names = data.split(" ");
+            // remove end line and split
+            names = data.replace(/(\r\n|\n|\r)/g, "").split(" ");
         });
 
     let carded = [];
 
     for (const [idx, item] of names.entries()) {
-        let cleaned = (idx != names.length - 1) ? item : item.slice(0,-1);
-        
-       //console.log(item, cleaned, cleaned.match(re));
-        
+        let cleaned = item;
         let name = cleaned.match(re)[0].slice(1,-4);
         let file_type = cleaned.slice(-3);
 
@@ -95,6 +92,8 @@ async function get_media_names() {
         let video_path = "./media/" + name + ".mp4"
         let is_desc_with_image = (names.includes(image_path) && file_type == "txt");
         let is_desc_with_video = (names.includes(video_path) && file_type == "txt");
+
+        //console.log(item, image_path, is_desc_with_image);
 
         if (!(item in carded) && !(is_desc_with_image) && !(is_desc_with_video)) {
             await create_card(item, name, file_type, description)
